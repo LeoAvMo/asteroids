@@ -17,6 +17,12 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     
     #Initializing the game
+    # Creating two groups
+    drawable = pygame.sprite.Group()
+    updatable = pygame.sprite.Group()
+    
+    # Adding players to groups
+    Player.containers = (drawable, updatable)
     
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     pygame.init()
@@ -36,10 +42,15 @@ def main():
         
         
         # Update game state
-        player.update(dt)
+        updatable.update(dt)
         
         screen.fill(backgroundColor)
-        player.draw(screen)
+        #Draw group that is drawable
+        
+        # Drawing all objects in the group
+        for thing in drawable:
+            thing.draw(screen)
+    
         
         pygame.display.flip()
         
