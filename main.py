@@ -1,3 +1,8 @@
+'''
+Activate virtual environment commands:
+python3 -m venv venv
+source venv/bin/activate
+'''
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
@@ -23,9 +28,12 @@ def main():
     # Main loop
     while True:
         
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        
+        
         
         # Update game state
         player.update(dt)
@@ -36,7 +44,7 @@ def main():
         pygame.display.flip()
         
         dt = clock.tick(60)/1000
-        print(f"Delta Time: {dt}")
+        # print(f"Delta Time: {dt}")
         
 if __name__ == "__main__":
     main()
