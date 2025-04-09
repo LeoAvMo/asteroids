@@ -7,6 +7,7 @@ source venv/bin/activate
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -50,6 +51,11 @@ def main():
         
         # Update game state
         updatable.update(dt)
+        
+        for aster in asteroids:
+            if aster.collision(player):
+                print("Game over!")
+                sys.exit()
         
         screen.fill(backgroundColor)
         #Draw group that is drawable
