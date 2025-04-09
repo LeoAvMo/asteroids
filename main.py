@@ -9,6 +9,8 @@ source venv/bin/activate
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 def main():
     ## Intro screen
@@ -17,23 +19,28 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     
     #Initializing the game
-    # Creating two groups
-    drawable = pygame.sprite.Group()
+    # Creating groups
+    drawable = pygame.sprite.Group() 
     updatable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
     
     # Adding players to groups
     Player.containers = (drawable, updatable)
+    Asteroid.containers = (asteroids,updatable, drawable)
+    AsteroidField.containers = (updatable,)
     
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    asteroid_field = AsteroidField()
+    
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0
     backgroundColor = (0,0,0)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
+    
     # Main loop
     while True:
-        
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
