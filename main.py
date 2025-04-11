@@ -60,6 +60,12 @@ def main():
                 print("Game over!")
                 sys.exit()
         
+        for aster in asteroids:
+            for shot in shots:
+                if aster.collision(shot):
+                    shot.kill()
+                    aster.kill()
+                    
         screen.fill(backgroundColor)
         #Draw group that is drawable
         
